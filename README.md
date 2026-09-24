@@ -1,11 +1,22 @@
-# DS Unlock — 飞智手柄「DS 模式」解锁开关
+# 飞智八爪鱼5 DS模式解锁开关 · Flydigi APEX 5 DS Mode Unlock
 
-一个小开关，让飞智空间站的 **DualSense（DS）模式**为**任意游戏**开启——官方只给少数游戏（如《赛博朋克 2077》）开了这个特权。
+> **关键词 Keywords：飞智八爪鱼5 / Flydigi APEX 5 / 八爪鱼5 / DualSense 模拟 / DS 模式 / DS Mode / 手柄模拟器 Gamepad Emulator / 自适应扳机 Adaptive Triggers / 扳机阻力 Trigger Resistance / 飞智空间站 Flydigi Space Station / 赛博朋克2077 Cyberpunk 2077 / 明日方舟：终末地 Arknights: Endfield / PS5 手柄 DualSense Wireless Controller / DS Unlock / 进程诱饵 Process Decoy / FORCEADAPT / HD Haptics**
+
+一个小开关，让飞智空间站的 **DualSense（DS）模式**为**任意游戏**开启——官方只给少数游戏（如《赛博朋克 2077》）开了这个特权。适用于飞智八爪鱼5（APEX 5）等飞智手柄。
 
 - `Cyberpunk2077.exe`：3.5KB 空进程诱饵（就是个"占位小程序"）
 - `DSSwitch.exe`：8KB WinForms 小开关，点一下开、点一下关
 
 开启后，任何支持 DualSense 的游戏（实测《明日方舟：终末地》）都能获得**自适应扳机阻力**。
+
+## ⚠️ 使用前提（必须全部满足，否则无效）
+
+1. 安装并运行 **飞智空间站（Flydigi Space Station）**，手柄（如飞智八爪鱼5）保持连接；
+2. 在飞智空间站里，**打开《赛博朋克 2077》的「自适应扳机」功能**（该游戏配置中的开关）；
+3. 在飞智空间站里，**切换到 DS 模式**；
+4. 以上就绪后，再打开本工具的开关（诱饵进程），然后启动游戏。
+
+> 原理上：空间站只对它信任的游戏开放 DS 管线；《赛博朋克 2077》的自适应扳机开关 + DS 模式就是那把"钥匙"。本工具用一个同名诱饵进程，让这把钥匙为所有游戏转动。
 
 ## 原理（实测逆向结论）
 
