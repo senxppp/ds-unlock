@@ -1,6 +1,6 @@
 # 飞智八爪鱼5 DS模式解锁开关 · Flydigi APEX 5 DS Mode Unlock
 
-> **关键词 Keywords：飞智八爪鱼5 / Flydigi APEX 5 / 八爪鱼5 / DualSense 模拟 / DS 模式 / DS Mode / 手柄模拟器 Gamepad Emulator / 自适应扳机 Adaptive Triggers / 扳机阻力 Trigger Resistance / 飞智空间站 Flydigi Space Station / 赛博朋克2077 Cyberpunk 2077 / 明日方舟：终末地 Arknights: Endfield / PS5 手柄 DualSense Wireless Controller / DS Unlock / 进程诱饵 Process Decoy / FORCEADAPT / HD Haptics**
+> **关键词 Keywords：飞智八爪鱼5 / Flydigi APEX 5 / 八爪鱼5 / DualSense 模拟 / DS 模式 / DS Mode / 手柄模拟器 Gamepad Emulator / 自适应扳机 Adaptive Triggers / 扳机阻力 Trigger Resistance / 飞智空间站 Flydigi Space Station / 赛博朋克2077 Cyberpunk 2077 / 明日方舟：终末地 Arknights: Endfield / PS5 手柄 DualSense Wireless Controller / DS Unlock / 进程诱饵 Process Decoy / FORCEADAPT / HD Haptics / 震动小助手 / 音频转震动 Audio to Haptics**
 
 一个小开关，让飞智空间站的 **DualSense（DS）模式**为**任意游戏**开启——官方只给少数游戏（如《赛博朋克 2077》）开了这个特权。适用于飞智八爪鱼5（APEX 5）等飞智手柄。
 
@@ -59,9 +59,23 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /nologo /target:winexe /
 
 开关程序硬编码诱饵路径 `D:\ds-unlock\Cyberpunk2077.exe`（改 `dsswitch.cs` 顶部常量即可）。
 
+## 配套项目
+
+- **[震动小助手 · flydigi-haptic-assistant](https://github.com/senxppp/flydigi-haptic-assistant)**
+  —— 补上 DS 模式下丢失的握把震动。**推荐与本工具一起使用。**
+
+  | | 本工具（DS Unlock） | 震动小助手 |
+  |---|---|---|
+  | 负责 | **扳机阻力**（走 FORCEADAPT 翻译管线） | **握把震动**（绕开 DS 管线，直发 `0xFFA0`） |
+  | 手段 | 同名诱饵进程骗开进程名白名单 | 拦截系统音频 → 实时分析 → 私有协议直发马达 |
+
+  两者都写同一个 `0xFFA0` 接口，实测可与飞智空间站**并存无冲突**。
+  推荐顺序：先开 DS 模式 → 再启动震动小助手 → 最后进游戏。
+
 ## Known Issues
 
-- ❗ **DualSense 音圈马达（voice coil）触觉无法转译。** 游戏里专为 DualSense 双音圈线性马达设计的精细 HD 震动（以音频流形式写入输出报文的 haptics）**目前不会被翻译**：飞智的管线只处理扳机阻力效果（FORCEADAPT），而八爪鱼的震动马达与 DualSense 的音圈执行器硬件完全不同，这部分报文被直接丢弃。表现：扳机有阻力，但部分游戏的细腻震动缺失或退化成普通转子震动。**欢迎 PR——等一位大佬出手拯救，呵呵。**
+- ❗ **DualSense 音圈马达（voice coil）触觉无法转译。** 游戏里专为 DualSense 双音圈线性马达设计的精细 HD 震动（以音频流形式写入输出报文的 haptics）**目前不会被翻译**：飞智的管线只处理扳机阻力效果（FORCEADAPT），而八爪鱼的震动马达与 DualSense 的音圈执行器硬件完全不同，这部分报文被直接丢弃。表现：扳机有阻力，但部分游戏的细腻震动缺失或退化成普通转子震动。
+  - ✅ **有解了** —— 配套项目 [**震动小助手 · flydigi-haptic-assistant**](https://github.com/senxppp/flydigi-haptic-assistant) 走另一条路绕开 DS 翻译管线：自己用 WASAPI Loopback 拦截系统音频、实时分析 RMS/瞬态/频带，再把震动帧直发 `0xFFA0` 私有接口，让握把双马达随音频震动。它不能复刻音圈马达的质感（硬件差异），但能把「开 DS 模式后完全没震动」变成「有跟随音频的震动」。
 - 空间站未来更新可能改变检测行为（当前为进程名匹配）。
 - 模式切换伴随虚拟设备销毁/重建（约 1~3 秒），不要在游戏进行中切换。
 
