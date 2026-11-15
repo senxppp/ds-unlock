@@ -86,3 +86,12 @@ C:\Windows\Microsoft.NET\Framework64\v4.0.30319\csc.exe /nologo /target:winexe /
 ## License
 
 MIT
+
+---
+
+## 相关项目 / Related
+
+- **[apex-haptic-bridge](https://github.com/senxppp/apex-haptic-bridge)** —— 新一代震动桥：USB/IP 虚拟设备截官方引擎的包络流，
+  翻译成目标手柄的马达与扳机帧（`0x12` / `0x51`）。带写入节流、停帧自愈、热插拔守护与 160 条离线回归。
+- **[gamepad-haptic-trigger-vibration-research](https://github.com/senxppp/gamepad-haptic-trigger-vibration-research)** ——
+  上一代音频转震动中间层，以及跨厂商协议方法论（5 篇）。
